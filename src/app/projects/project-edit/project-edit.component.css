@@ -1,0 +1,12 @@
+.container {
+   margin-top: 50px;
+}
+
+.btn-danger {
+    width:100px; 
+    margin-right: 10px;
+}
+
+.btn-success {
+    width:100px
+}

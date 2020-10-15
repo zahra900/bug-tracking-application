@@ -1,0 +1,20 @@
+.btn-primary-spacing 
+{
+margin-right: 5px;
+margin-bottom: 10px !important;
+margin-top: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+.btn-primary-spacing {
+  margin-top: 30px;
+  width:150px
+}
+
+.input-group {
+  margin-bottom: 10px;
+}

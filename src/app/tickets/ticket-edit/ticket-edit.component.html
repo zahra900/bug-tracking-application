@@ -1,0 +1,77 @@
+<div class="container">
+  <h4 class="text-center"> {{pagetitle}} </h4>
+  <form [formGroup]="bug" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="title">Bug title</label>
+      <input type="text" formControlName="title" placeholder="title" name="title" class="form-control" id="title"
+        required>
+      <div *ngIf="title.touched && title.invalid" class="alert alert-danger">
+        <div *ngIf="title.errors.required">filling title is required!</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="bugDescription">Bug description</label>
+      <textarea type="description" formControlName="bugDescription" placeholder="description" name="bugDescription"
+        class="form-control" id="bugDescription"> </textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="resolutionSummary">Resolution Summary</label>
+      <textarea type="description" formControlName="resolutionSummary" placeholder="resolution Summary"
+        name="resolutionSummary" class="form-control" id="resolutionSummary"> </textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select id="inputState" class="form-control show-tick" formControlName="status">
+        <option *ngFor="let s of statusList" [ngValue]="s.value">{{s.name}}</option>
+      </select>
+      <div *ngIf="status.touched && status.invalid" class="alert alert-danger">
+        <div *ngIf="status.errors.required">filling status is required!</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="priority">Priority</label>
+      <select id="priority" class="form-control show-tick" formControlName="priority">
+        <option *ngFor="let p of priorityList" [ngValue]="p.value">{{p.name}}</option>
+      </select>
+      <div *ngIf="priority.touched && priority.invalid" class="alert alert-danger">
+        <div *ngIf="priority.errors.required">filling priority is required!</div>
+      </div>
+    </div>
+
+    <div class="form-group" formGroupName="assignee">
+      <label for="Assignee">Assignee</label>
+      <select id="Assignee" class="form-control show-tick" formControlName="email" required>
+        <option *ngFor="let user of usersList" [ngValue]="user.email">{{user.username}}</option>
+      </select>
+      <div *ngIf="assignee.touched && assignee.invalid" class="alert alert-danger">
+        <div *ngIf="assignee.errors.required">Assignee is required!</div>
+      </div>
+    </div>
+
+    <div class="form-group" formGroupName="project">
+      <label for="project">project</label>
+      <select id="project" class="form-control show-tick" formControlName="id" required>
+        <option *ngFor="let project of projectList" [ngValue]="project.id">{{project.projectName}}</option>
+      </select>
+      <div *ngIf="project.touched && project.invalid" class="alert alert-danger">
+        <div *ngIf="project.errors.required">project is required!</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="file">Choose File</label>
+      <div></div>
+      <input type="file"
+              id="file"
+             (change)="handleFileInput($event.target.files)">
+    </div>
+
+    <button (click)="onCancel()" class="btn btn-danger">Cancel</button>
+    <button class="btn btn-success" [disabled]="!bug.valid">{{editMode ? 'Edit' : 'Add'}}</button>
+  </form>
+</div>

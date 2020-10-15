@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <app-user-list></app-user-list>
+        </div>
+    </div>
+    <div class="row">
+        <form [formGroup]="usersRole" (ngSubmit)="onSubmit()">
+            
+            <div class="col-sm">
+                <div class="form-group" formGroupName="role">
+                    <label for="roles">Roles</label>
+                    <select id= "roles" class="form-control custom-select" formControlName="id" title='Choose one of the following...' >
+                        <option *ngFor="let role of rolesList" [ngValue]="role.id">{{role.roleName| lowercase}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="form-group" >
+                    <label for="inputState">Users</label>
+                    <select id= "inputState" class="form-control show-tick" formControlName="user"  multiple>
+                    <option *ngFor="let user of usersList" [ngValue]="{email: user.email}">{{user.username}}</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+       </form>
+    </div>
+</div>

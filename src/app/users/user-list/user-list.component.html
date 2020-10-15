@@ -1,0 +1,23 @@
+
+    <h4 style="margin: auto" class="btn-primary-spacing"> Users List</h4>
+    <div >
+        
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usersList; let index = index">
+          <td class="hidden">{{index}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role.roleName| lowercase}}</td>
+       </tr>
+      </tbody>
+    </table>
+  </div>

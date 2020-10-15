@@ -1,0 +1,72 @@
+<div class="container center-block">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card text-center" style="max-width: 100rem; margin-top: 50px;">
+                <div class="card-header text-center"> Ticket Details</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <h6>Title</h6>
+                            <p> {{bug.title}} </p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h6>Created Date</h6>
+                            <p> {{bug.createdDate | date: 'dd/MM/yyyy'}} </p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <h6>Priority</h6>
+                            <p> {{bug.priority}} </p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h6>BugDescription</h6>
+                            <p> {{bug.bugDescription}} </p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <h6>Assignee</h6>
+                            <p> {{bug.assignee.username}} </p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h6>Assigner</h6>
+                            <p> {{bug.assigner.username}} </p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <h6>Project</h6>
+                            <p> {{bug.project.projectName}} </p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h6> Resolution Summary</h6>
+                            <p> {{bug.resolutionSummary}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" style="max-width: 100rem; margin-top: 50px;" [formGroup]="comment"
+                (ngSubmit)="onSubmit()">
+                <label for="comment">Add a comment</label>
+                <textarea type="description" formControlName="message" placeholder="description" name="comment"
+                    class="form-control" id="comment"> </textarea>
+                <button type="submit" style="margin-top: 5px;" (click)="onSubmit()" class="btn btn-success"> Add
+                </button>
+            </div>
+            <div *ngFor="let comment of comments">
+                <div class="card" style="width: 18rem;margin-top: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{comment.commenter.username}}</h5>
+                        <p class="card-text">{{comment.message}}</p>
+                        <p class="card-text"><small class="text-muted">created at
+                                {{comment.createdAt | date: 'dd/MM/yyyy'}} </small></p>
+                        <button class="btn btn-danger" (click)="deleteComment(comment.id)"> delete </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

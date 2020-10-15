@@ -1,0 +1,33 @@
+.btn-primary-spacing 
+{
+margin-right: 5px;
+margin-bottom: 10px !important;
+margin-top: 10px;
+width:150px;
+margin-top: 30px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+/* .container {
+  margin-top: 50px;
+} */
+
+.input-group.md-form.form-sm.form-1 input{
+  border: 1px solid #bdbdbd;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+.input-group.md-form.form-sm.form-2 input {
+  border: 1px solid #bdbdbd;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+

@@ -1,0 +1,64 @@
+<div class="container">
+
+  <h4 class="text-center">{{title}}</h4>
+
+  <form [formGroup]="project" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="projectName">Project Name:</label>
+      <input type="text" formControlName="projectName" placeholder="projectName" name="projectName" class="form-control"
+        id="projectName">
+      <div *ngIf="projectName.touched && projectName.invalid" class="alert alert-danger">
+          <div *ngIf="projectName.errors.required">filling projectName is required!</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea type="description" formControlName="description" placeholder="description" name="description"
+        class="form-control" id="description"> </textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="inputState">Users</label>
+      <select id="inputState" class="form-control show-tick" formControlName="users" multiple>
+        <option *ngFor="let user of usersList" [ngValue]="user.email">{{user.username}}</option>
+      </select>
+      <div *ngIf="users.touched && users.invalid" class="alert alert-danger">
+        <div *ngIf="users.errors.required">filling users is required!</div>
+    </div>
+    </div>
+
+    <div class="form-group" *ngIf="editMode">
+      <label for="inputState"> Bugs </label>
+      <table class="table table-bordered" formArrayName="bugs">
+        <thead>
+          <tr>
+            <!-- <th class="hidden">Id</th> -->
+            <th>title</th>
+            <th>createdDate</th>
+            <th>status</th>
+            <th>priority</th>
+            <th>assignee</th>
+            <th>assigner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bug of bugs.controls; let index = index" [formGroupName]="index">
+            <!-- <td class="hidden">{{index}}</td> -->
+            <td>{{bug.value.title}}</td>
+            <td>{{bug.value.createdDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{bug.value.status}}</td>
+            <td>{{bug.value.priority}}</td>
+            <td>{{bug.value.assignee}}</td>
+            <td>{{bug.value.assigner}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button (click)="onCancel()" class="btn btn-danger">Cancel</button>
+    <button  class="btn btn-success" [disabled]="!project.valid" >{{editMode ? 'Edit' : 'Add'}}</button>
+
+  </form>
+</div>
